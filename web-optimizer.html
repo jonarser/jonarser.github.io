@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Referrer Check</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+        #copy-btn {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+        #copy-btn:hover {
+            background-color: #45a049;
+        }
+        .hidden {
+            display: none;
+        }
+        #status {
+            margin-top: 10px;
+            min-height: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome!</h1>
+    <p id="message">Checking referrer...</p>
+    
+    <div id="content" class="hidden">
+        <button id="copy-btn">Copy Text</button>
+        <p id="status"></p>
+    </div>
+
+    <script>
+        // Check if user came from specific URL
+        const allowedReferrer = "example.com"; // Replace with your domain
+        
+        // Function to extract domain from referrer URL
+        function getDomain(url) {
+            if (!url) return null;
+            try {
+                return new URL(url).hostname.replace('www.', '');
+            } catch {
+                return null;
+            }
+        }
+        
+        const referrerDomain = getDomain(document.referrer);
+        
+        if (referrerDomain && referrerDomain === allowedReferrer) {
+            // If referrer matches - load the script
+            document.getElementById('message').textContent = "Access granted!";
+            
+            const script = document.createElement('script');
+            script.src = 'copy-script.js';
+            script.onload = function() {
+                document.getElementById('content').classList.remove('hidden');
+            };
+            script.onerror = function() {
+                document.getElementById('message').textContent = "Error loading script";
+            };
+            document.body.appendChild(script);
+        } else {
+            // If referrer doesn't match
+            document.getElementById('message').textContent = "Access denied. You must come from the specified page.";
+        }
+    </script>
+</body>
+</html>
