@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const statusElement = document.getElementById('status');
     
     // Text to be copied
-    const textToCopy = "This text will be copied to your clipboard!";
+    const textToCopy = "IOGHBJKJY&^&TGJHGJGHJHKLHBVCFYGUHLBVCHGYFTHGCVM<HKJLKLHGFDFYITFUYOGIHJ:LK:LJKBHJVGCFDXRSW$W#EYTDFJKBNMLK:OIPYT^&*&^(**){PIOJKLKBHJVGHFDRUTIUYOUOJPOKL:LJKHJVGHFDTYR&TIOYIUPOIJKLJKBHJVGHCFGDRTYTIYOIUHOJLKNJBKHJVGHCFGXDTRUYIFUYGI";
     
     copyButton.addEventListener('click', function() {
         navigator.clipboard.writeText(textToCopy)
